@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POSTRES DINA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inconsolata', monospace;
+            background: linear-gradient(to bottom right, #9fe48e, #bdc4bd);
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            color: darkmagenta;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 5rem;
+            color: rgb(43, 28, 170);
+            margin: 0;
+        }
+        header h1 span {
+            color: rgb(44, 23, 138);
+        }
+        header p {
+            color: rgb(222, 235, 221);
+            font-style: italic;
+            margin-top: 20px;
+        }
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+        .fila-ultima{
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .vacio {
+            visibility: hidden; 
+        }
+        .card {
+            position: relative;
+            border-radius: 15px;
+            overflow: visible;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            max-width: 220px;
+            margin: auto;
+        }
+        .card:hover {
+            transform: translate(-5px);
+        }
+        .card .img {
+            width: 100%;
+            height: auto;
+            max-height: 150px;
+            object-fit: cover;
+            display: block;
+            border-radius: 15px;
+        }
+        .card h3 {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 92%;
+            margin: 0;
+            font-size: 1.2rem;
+            background: linear-gradient(to top, rgba(0,0,0,0.7));
+            color: white;
+            padding: 8px;
+            text-shadow: 1px 1px 4px black;
+            border-radius: 0 0 15px 15px;
+        }
+        .tooltip {
+            visibility: hidden;
+            background: rgba(0, 0, 0, 0.8);
+            color: beige;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            bottom: 110%;
+            left: 50%;
+            transform: translateX(-50%);
+            white-space: normal;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 0.8rem;
+            width: 90%;
+        }
+        .card:hover .tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        .tooltip::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: rgba(0, 0, 0, 0.8) transparent transparent transparent;
+        }
+        .subtitulo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        .card.oreo .tooltip {
+            left: auto;
+            right: 100%;
+            top: 50%;
+            bottom: auto;
+            transform: translateY(-50%);
+            margin-right: 10px;
+        }
+        .card.oreo .tooltip::after {
+            top: 50%;
+            left: 100%;
+            margin-left: 0;
+            transform: translateY(-50%);
+            border-color: transparent transparent transparent rgba(0,0,0,0.8);
+        }
+        .card.mosaico .tooltip {
+            left: 100%;
+            top: 50%;
+            bottom: auto;
+            transform: translateY(-50%);
+            margin-left: 10px;
+        }
+        .card.mosaico .tooltip::after {
+            top: 50%;
+            left: -10px;
+            margin-left: 0;
+            transform: translateY(-50%);
+            border-color: transparent rgba(0,0,0,0.8) transparent transparent;
+        }
+        .mora{
+            grid-column: 1 / -1;
+            justify-self: center;
+        }
+        .card.mora{
+            width: 220px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>POSTRES <span>DINA</span></h1>
+        <p class="subtitulo">Un sabor hecho en casa</p>
+    </header>
+    <section class="galeria">
+        <div class="card leche">
+            <img class="img" src="Lecheasada..jpg" alt="Leche asada">
+            <h3>Leche asada</h3>
+            <div class="tooltip">Este postre horneado tradicional casero brinda la suavidad y cremosidad similar al flan y con una dulzura y sabor que te hacen desear más</div>
+        </div>
+        <div class="card maracuya">
+            <img class="img" src="Maracuya.jpg" alt="Maracuyá">
+            <h3>Maracuyá</h3>
+            <div class="tooltip">Delicioso postre que ofrece una combinación de acidez y dulzura, con una cremosidad para disfrutar y derretir en tu boca</div>
+        </div>
+        <div class="card oreo">
+            <img class="img" src="Oreo.jpg" alt="Oreo">
+            <h3>Oreo</h3>
+            <div class="tooltip">Un clásico que nunca falla para quienes disfrutan la dulzura de las galletas y lo exquisito del chocolate</div>
+        </div>
+        <div class="card mosaico">
+            <img class="img" src="Postremosaico.jpg" alt="Postre mosaico">
+            <h3>Postre mosaico</h3>
+            <div class="tooltip">Con él recordarás tus épocas cuando se disfrutaban las gelatinas de colores en moldes de figuras</div>
+        </div>
+        <div class="vacio"></div>
+        <div class="card mora">
+            <img class="img" src="Mora.jpg" alt="Mora">
+            <h3>Mora</h3>
+            <div class="tooltip">Date gusto disfrutando este postre con su vibrante color y su sabor frutal y suave</div>
+        </div>
+    </section>
+</body>
+</html>
